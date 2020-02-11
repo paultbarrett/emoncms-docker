@@ -3,9 +3,6 @@
 version: '2'
 
 services:
-  base:
-    env_file:
-      - default.docker-env
   # PHP & apache container using offical Docker PHP iamge
   web:
     # If pre-built image from docker hub exists then use that (docker pull openenergymonitor/emoncms:latest) if not Buildcontainer see Dockerflile
@@ -14,6 +11,8 @@ services:
     ports:
       # Expose Emoncms to the world on port 80
       - 80:80
+    env_file:
+      - ./default.docker-env
     volumes:
       # mount docker volumes persistant inside docker container
       - emon-phpfina:/var/opt/emoncms/phpfina
@@ -28,6 +27,8 @@ services:
     # Official MYSQL docker image
     # To do: make compatiable with 5.7
     image: mariadb:latest
+    env_file:
+      - ./default.docker-env
     volumes:
       - emon-db-data:/var/lib/mysql
     logging:
