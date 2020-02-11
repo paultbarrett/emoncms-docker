@@ -9,6 +9,9 @@ services:
     # If pre-built image from docker hub exists then use that (docker pull openenergymonitor/emoncms:latest) if not Buildcontainer see Dockerflile
     image: openenergymonitor/emoncms:latest
     build: .
+    ports:
+      # Expose Emoncms to the world on port 80
+      - 80:80
     volumes:
       # mount docker volumes persistant inside docker container
       - emon-phpfina:/var/opt/emoncms/phpfina
