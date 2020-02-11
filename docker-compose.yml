@@ -13,7 +13,7 @@ services:
       # Expose Emoncms to the world on port 80
       - 80:80
     env_file:
-     - default.docker-env
+      - default.docker-env
     volumes:
       # mount docker volumes persistant inside docker container
       - emon-phpfina:/var/opt/emoncms/phpfina
@@ -29,7 +29,7 @@ services:
     # To do: make compatiable with 5.7
     image: mariadb:latest
     env_file:
-     - default.docker-env
+      - default.docker-env
       
     volumes:
       - emon-db-data:/var/lib/mysql
