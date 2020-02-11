@@ -12,6 +12,27 @@ services:
     ports:
       # Expose Emoncms to the world on port 80
       - 80:80
+    environment:
+      - "MYSQL_HOST=db"
+      - "MYSQL_PORT=3306"
+      - "MYSQL_DATABASE=emoncms"
+      - "MYSQL_USER=emoncms"
+      - "MYSQL_PASSWORD=emonpiemoncmsmysql2016"
+      - "MYSQL_RANDOM_ROOT_PASSWORD=yes"
+
+      - "REDIS_ENABLED=true"
+      - "REDIS_HOST=redis"
+      - "REDIS_PORT=6379"
+      - "REDIS_PREFIX='emoncms'"
+
+      - "MQTT_ENABLED=false"
+      - "MQTT_HOST=localhost"
+      - "MQTT_USER=emonpi"
+      - "MQTT_PASSWORD=emonpimqtt2016"
+      - "MQTT_BASETOPIC=emon"
+
+      - "PHPFINA_DIR=/var/opt/emoncms/phpfina/"
+      - "PHPTIMESERIES_DIR=/var/opt/emoncms/phptimeseries/"
     volumes:
       # mount docker volumes persistant inside docker container
       - emon-phpfina:/var/opt/emoncms/phpfina
@@ -27,7 +48,13 @@ services:
     # To do: make compatiable with 5.7
     image: mariadb:latest
     environment:
-      - "MYSQL_HOST=localhost"
+      - "MYSQL_HOST=db"
+      - "MYSQL_PORT=3306"
+      - "MYSQL_DATABASE=emoncms"
+      - "MYSQL_USER=emoncms"
+      - "MYSQL_PASSWORD=emonpiemoncmsmysql2016"
+      - "MYSQL_RANDOM_ROOT_PASSWORD=yes"
+      
     volumes:
       - emon-db-data:/var/lib/mysql
     logging:
