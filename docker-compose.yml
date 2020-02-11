@@ -5,7 +5,7 @@ version: '2'
 services:
   base:
     env_file:
-      - ./default.docker-env
+      - default.docker-env
   # PHP & apache container using offical Docker PHP iamge
   web:
     # If pre-built image from docker hub exists then use that (docker pull openenergymonitor/emoncms:latest) if not Buildcontainer see Dockerflile
