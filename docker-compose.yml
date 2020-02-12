@@ -77,7 +77,7 @@ services:
   mqtt:
     image: eclipse-mosquitto:1.6
     ports:
-      - 1884:1883
+      - 1883:1883
       
   emoncms_mqtt:
     build: ./emoncms_mqtt
