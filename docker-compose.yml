@@ -21,8 +21,7 @@ services:
   # MYSQL Database
   db:
     # Official MYSQL docker image
-    # To do: make compatiable with 5.7
-    image: mariadb:latest
+    image: mariadb:10.5.5
     environment:
       - "MYSQL_HOST=localhost"
     volumes:
@@ -34,7 +33,7 @@ services:
 
   redis:
     # Official redis image
-    image: redis:5
+    image: redis:5.0.3
     volumes:
       - emon-redis-data:/data
     logging:
