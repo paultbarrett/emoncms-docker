@@ -6,6 +6,9 @@ services:
 
   # PHP & apache container using offical Docker PHP iamge
   web:
+    ports:
+      # Expose Emoncms to the world on port 80
+      - 8285:80
     # If pre-built image from docker hub exists then use that (docker pull openenergymonitor/emoncms:latest) if not Buildcontainer see Dockerflile
     image: openenergymonitor/emoncms:latest
     build: .
@@ -17,6 +20,9 @@ services:
       # Link to MYSQL DB (see below)
       - db
       - redis
+    env_file:
+      # Use default enviroment variables file for dev
+      - 'default.docker-env'
 
   # MYSQL Database
   db:
@@ -31,6 +37,8 @@ services:
       driver: json-file
       options:
         max-size: "10m"
+    env_file:
+      - 'default.docker-env'
 
   redis:
     # Official redis image
@@ -41,6 +49,8 @@ services:
       driver: json-file
       options:
         max-size: "10m"
+    env_file:
+      - 'default.docker-env'
 
 volumes:
   emon-phpfiwa:
